@@ -1,0 +1,23 @@
+{
+  "name": "application-books",
+  "version": "1.0.0",
+  "description": "application books",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Christiano0407/application-books.git"
+  },
+  "keywords": [
+    "javascript",
+    "node"
+  ],
+  "author": "Chris04",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Christiano0407/application-books/issues"
+  },
+  "homepage": "https://github.com/Christiano0407/application-books#readme"
+}
