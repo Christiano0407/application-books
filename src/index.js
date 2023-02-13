@@ -1,8 +1,10 @@
-//** === ==== Application Books ===== ===  */
-const express = require(`express`);
-const app = express();
-const port = process.env.port || 3000;
+//** === ==== Application Books ===== === Settings / Middleware => Morgan / Routers / Static  */
+const app = require(`./app.js`);
 
-app.listen(port, () => {
-  console.log(`Server is running in port: http://localhost:${port}}`);
-});
+//const port = process.env.port || 3000;
+
+async function main() {
+  await app.listen(app.get(`port`));
+  console.log(`Server On Port`, app.get(`port`));
+}
+main();
