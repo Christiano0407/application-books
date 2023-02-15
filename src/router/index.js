@@ -16,5 +16,11 @@ router.get(`/page-404`, (req, res) => {
   res.render(`../views/404.ejs`);
 });
 
+//** ==== POST ====  */
+router.post(`/new-entry`, (req, res) => {
+  console.log(req.body);
+  res.send(`received`);
+});
+
 //** === Module Export */
 module.exports = router;
