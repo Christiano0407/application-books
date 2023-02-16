@@ -2,10 +2,16 @@
 const { Router } = require(`express`);
 const router = Router();
 
+//**? ==== Array Books */
+const books = [];
+
 //** === Init === Pagination === */
 router.get(`/`, (req, res) => {
   //res.send(`Hello Home, World`);
-  res.render(`../views/index.ejs`);
+  res.render(`../views/index.ejs`, {
+    //books: books,
+    books,
+  });
 });
 
 router.get(`/new-entry`, (req, res) => {
@@ -18,7 +24,22 @@ router.get(`/page-404`, (req, res) => {
 
 //** ==== POST ====  */
 router.post(`/new-entry`, (req, res) => {
-  console.log(req.body);
+  const { title, author, image, description } = req.body;
+  // === Validation ===
+  if (!title || !author || !image || !description) {
+    res.status(404).send(`Entries must have a title and description`);
+    return;
+  }
+
+  let newBooks = {
+    title,
+    author,
+    image,
+    description,
+  };
+  // === Add new Book to the Array ===
+  //console.log(req.body);
+  books.push(newBooks);
   res.send(`received`);
 });
 
