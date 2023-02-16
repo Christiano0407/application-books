@@ -2,8 +2,13 @@
 const { Router } = require(`express`);
 const router = Router();
 
+//** === File System JSON === */
+const fs = require(`fs`);
+
 //**? ==== Array Books */
-const books = [];
+const json_booksRead = fs.readFileSync(`/src/books.json`, `utf-8`);
+//const books = [];
+const books = JSON.parse(json_booksRead);
 
 //** === Init === Pagination === */
 router.get(`/`, (req, res) => {
@@ -40,6 +45,11 @@ router.post(`/new-entry`, (req, res) => {
   // === Add new Book to the Array ===
   //console.log(req.body);
   books.push(newBooks);
+
+  // === Write file Sync / reed rout ===
+  const json_books = JSON.stringify(books);
+  fs.writeFileSync(`/src/books.json`, json_books, `utf-8`);
+
   res.send(`received`);
 });
 
