@@ -4,19 +4,18 @@ const router = Router();
 
 //** === File System JSON === */
 const fs = require(`fs`);
-
+//const uuidv4 = require('uuid/v4');
+/* const path = require(`path`);
+ */
 //**? ==== Array Books */
-const json_booksRead = fs.readFileSync(`/src/books.json`, `utf-8`);
+const json_books = fs.readFileSync(`/src/books.json`, `utf-8`);
 //const books = [];
-const books = JSON.parse(json_booksRead);
+let books = JSON.parse(json_books);
 
 //** === Init === Pagination === */
 router.get(`/`, (req, res) => {
   //res.send(`Hello Home, World`);
-  res.render(`../views/index.ejs`, {
-    //books: books,
-    books,
-  });
+  res.render(`../views/index.ejs`, { books });
 });
 
 router.get(`/new-entry`, (req, res) => {
@@ -37,6 +36,7 @@ router.post(`/new-entry`, (req, res) => {
   }
 
   let newBooks = {
+    // id: uuidv4(),
     title,
     author,
     image,
@@ -50,7 +50,7 @@ router.post(`/new-entry`, (req, res) => {
   const json_books = JSON.stringify(books);
   fs.writeFileSync(`/src/books.json`, json_books, `utf-8`);
 
-  res.send(`received`);
+  res.redirect(`/`);
 });
 
 //** === Module Export */
